@@ -32,7 +32,7 @@ target_metadata = Base.metadata
 #
 
 
-db_url = settings.DB_URL
+db_url = settings.DATABASE_URL
 if db_url:
     config.set_main_option("sqlalchemy.url", db_url)
 
