@@ -1,0 +1,31 @@
+<div class="sticky! top-0! z-100 bg-white w-full flex justify-between gap-6 py-4 pr-6 pl-3">
+    <div class="max-w-sm w-max flex items-center justify-end divide-x">
+        <a
+                href="/"
+                class="size-11 shrink-0 hover:bg-zinc-200 flex items-center justify-center gap-1"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="lucide lucide-chevron-left-icon lucide-chevron-left"
+            >
+                <path d="m15 18-6-6 6-6"/>
+            </svg>
+        </a>
+
+        {% include "components/doc_name.html" %}
+    </div>
+
+
+    <div class="max-w-sm w-max flex items-center justify-end gap-2">
+        {% include "components/active_members.html" %}
+        {% include "components/more_options.html" %}
+    </div>
+</div>

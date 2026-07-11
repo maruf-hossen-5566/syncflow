@@ -1,0 +1,21 @@
+<a
+        href="{{to or '/'}}"
+        class="py-3 pl-2 pr-4 pt hover:bg-zinc-100 w-auto flex items-center gap-1 {{classes}}"
+>
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-chevron-left-icon lucide-chevron-left"
+    >
+        <path d="m15 18-6-6 6-6"/>
+    </svg>
+
+    {% if text %} {{text}} {% else %} Back {% endif %}
+</a>

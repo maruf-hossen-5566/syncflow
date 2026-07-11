@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="w-full grid grid-cols-7 gap-6">
+    <div class="w-full col-span-2">
+        {% block sidebar %} {% endblock sidebar %}
+    </div>
+    <div class="w-full col-span-5">
+        {% block main_content %} {% endblock main_content %}
+    </div>
+</div>
+{% endblock body %}

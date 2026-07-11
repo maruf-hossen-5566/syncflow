@@ -1,0 +1,24 @@
+<form
+        class="max-w-sm w-full"
+        style="overflow: visible; display: block;"
+>
+    <label
+            for="doc_name"
+            class="hidden"
+    >Document name</label>
+    <input
+            name="name"
+            id="doc_name"
+            hx-post="/documents/{{doc.id}}/update"
+            hx-include="#doc_name"
+            hx-trigger="keyup delay:0.5s"
+            hx-swap="none"
+            type="text"
+            required
+            class="py-1 px-4 text-xl font-medium focus:outline-4 outline-zinc-300 hover:bg-zinc-200"
+            value="{{doc.name}}"
+            {% if not doc.created_by == user.id %}
+            disabled
+            {% endif %}
+    >
+</form>

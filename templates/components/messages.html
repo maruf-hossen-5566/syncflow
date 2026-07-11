@@ -1,0 +1,106 @@
+{% if errors %}
+<ul class="w-full sticky z-100 px-6 top-0 bg-red-500 divide-y divide-white/50">
+    {% for error in errors %}
+    <li
+            class="w-full max-w-screen-lg mx-auto text-white py-4 flex items-center justify-between gap-4"
+    >
+        <span>{{error}}</span>
+        <button
+                class="size-8 p-2 hover:bg-red-700 shrink-0 inline-flex items-center justify-center"
+                onclick="handleErrorDelete(event)"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="pointer-events-none shrink-0 lucide lucide-x-icon lucide-x"
+            >
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %} {% if request.query_params.get("error_message") %}
+<ul class="w-full sticky z-100 top-0 px-6 bg-red-500 divide-y divide-white/50">
+    <li
+            class="w-full max-w-screen-lg mx-auto text-white py-4 flex items-center justify-between gap-4"
+    >
+        <span>{{request.query_params.get("error_message")}}</span>
+        <button
+                class="size-8 p-2 hover:bg-red-700 shrink-0 inline-flex items-center justify-center"
+                onclick="handleErrorDelete(event)"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="pointer-events-none shrink-0 lucide lucide-x-icon lucide-x"
+            >
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
+    </li>
+</ul>
+{% endif %} {% if request.query_params.get("success_message") %}
+<ul class="w-full sticky z-100 top-0 px-6 bg-green-500 divide-y divide-white/50">
+    <li
+            class="w-full max-w-screen-lg mx-auto text-white py-4 flex items-center justify-between gap-4"
+    >
+        <span>{{request.query_params.get("success_message") or message}}</span>
+        <button
+                class="size-8 p-2 hover:bg-green-700 shrink-0 inline-flex items-center justify-center"
+                onclick="handleErrorDelete(event)"
+        >
+            <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="pointer-events-none shrink-0 lucide lucide-x-icon lucide-x"
+            >
+                <path d="M18 6 6 18"/>
+                <path d="m6 6 12 12"/>
+            </svg>
+        </button>
+    </li>
+</ul>
+{% endif %}
+
+<script>
+    const handleErrorDelete = (e) => {
+        e.preventDefault();
+        const error_elem = e.target.parentNode;
+        const parent = error_elem.parentNode;
+
+        error_elem.remove();
+        if (parent.children.length === 0) {
+            parent.remove();
+        }
+    };
+    window.addEventListener("load", () => {
+        const url = new URL(window.location);
+        url.searchParams.delete("error_message");
+        url.searchParams.delete("success_message");
+        window.history.replaceState({}, "", url.toString());
+    });
+</script>

@@ -1,0 +1,37 @@
+<div class="relative">
+    <button
+            class="max-w-xs py-3 pr-6 pl-4.5 flex items-center gap-1 hover:bg-zinc-100 cursor-pointer"
+            onclick="handleDropdownClick(event, 'document-dropdown')"
+    >
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="shrink-0 lucide lucide-plus-icon lucide-plus"
+        >
+            <path d="M5 12h14"/>
+            <path d="M12 5v14"/>
+        </svg>
+        <span class="text-nowrap overflow-hidden text-ellipsis">New document</span>
+    </button>
+
+    <div
+            id="document-dropdown"
+            class="hidden absolute z-100 bg-white top-full mt-2 right-0 w-full py-2 flex flex-col border"
+    >
+        <a
+                href="/documents/create"
+                class="w-full py-3 px-6 hover:bg-zinc-100"
+        >Create</a>
+        <a
+                href="/documents/join"
+                class="text-start w-full py-3 px-6 hover:bg-zinc-100"
+        >Join</a>
+    </div>
+</div>

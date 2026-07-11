@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="{{ url_for('static', path='js/htmax.min.js') }}"></script>
+    <link
+            href="{{ url_for('static', path='css/output.css') }}"
+            rel="stylesheet"
+    >
+    <title>Sync Flow</title>
+</head>
+<body
+        id="body"
+        class="min-h-screen"
+>
+{% include "components/messages.html" %}
+{% include "components/header.html" %}
+
+<div class="w-full px-6">
+    <div class="max-w-screen-lg mx-auto py-6">
+        {% block body %}{% endblock body %}
+    </div>
+</div>
+</body>
+
+<script src="/static/js/global.js"></script>
+</html>

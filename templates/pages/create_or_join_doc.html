@@ -1,0 +1,46 @@
+{% extends "base_layout.html" %}
+<!---->
+{% block title %}New Document{% endblock title %}
+<!---->
+
+{% block body %}
+<div class="w-screen h-screen flex flex-col items-center pt-32">
+    <form
+            method="post"
+            class="w-full max-w-md mx-auto flex flex-col gap-8"
+    >
+        <h1 class="text-3xl font-bold mb-12 text-center">
+            {{title or "Create a new document"}}
+        </h1>
+
+        <div class="w-full flex flex-col gap-2">
+            <label
+                    for="{{name}}"
+            >Document {% if name == 'document_name' %} name {% else %} ID {% endif %}</label>
+            <input
+                    id="{{name}}"
+                    name="{{name}}"
+                    type="text"
+                    class="w-full p-4 border"
+                    placeholder="{{placeholder}}"
+                    autofocus
+            />
+        </div>
+        <div class="w-full flex flex-col gap-2">
+            <button
+                    type="submit"
+                    class="p-4 bg-zinc-900 text-white cursor-pointer"
+            >
+                Confirm
+            </button>
+            <a
+                    href="/"
+                    class="p-4 hover:bg-zinc-200 text-center"
+            >
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+{% endblock body %}

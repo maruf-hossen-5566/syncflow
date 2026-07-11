@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="/static/js/htmax.min.js"></script>
+    <link
+            href="{{ url_for('static', path='css/output.css') }}"
+            rel="stylesheet"
+    >
+    <link
+            rel="stylesheet"
+            href="{{ url_for('static', path='css/global.css') }}"
+    >
+    <title>{% block title %}{% endblock title %} - SyncFlow</title>
+</head>
+
+<body id="body">
+{% include "components/messages.html" %}
+{% block body %}{% endblock body %}
+</body>
+
+</html>

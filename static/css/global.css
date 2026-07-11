@@ -1,0 +1,26 @@
+:root {
+    overscroll-behavior: none;
+}
+
+.tox.tox-tinymce {
+    min-height: 100vh !important;
+    outline: none;
+    border: 1px solid black;
+    border-radius: 0 !important;
+}
+
+
+.tox .tox-editor-header {
+    position: fixed !important;
+    top: 5.12rem !important;
+    left: 0;
+    width: 100%;
+    z-index: 90;
+    border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+    box-shadow: none !important;
+}
+
+.tox .tox-editor-header .tox-toolbar {
+    justify-content: center;
+}

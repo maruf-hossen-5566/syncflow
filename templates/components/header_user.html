@@ -1,0 +1,17 @@
+{% if user %}
+<div class="w-max flex items-center gap-4">
+    {% include "components/new_dropdown.html" %}
+    {% include "components/user_dropdown.html" %}
+</div>
+{% else %}
+<div class="w-max flex items-center gap-4">
+    <a
+            href="/auth/login"
+            class="py-3 px-6 hover:bg-zinc-100"
+    >Login</a>
+    <a
+            href="/auth/register"
+            class="py-3 px-6 border hover:bg-zinc-100"
+    >Register</a>
+</div>
+{% endif %}

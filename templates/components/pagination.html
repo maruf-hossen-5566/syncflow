@@ -1,0 +1,53 @@
+<div class="w-full flex items-center justify-between gap-4 my-16">
+    <button
+
+            hx-get="/?page={{page-1}}&sort={{request.query_params.sort}}"
+            hx-target=".docs_table_container"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+            hx-push-url="true"
+            class="border hover:bg-zinc-200 cursor-pointer pr-6 pl-4 py-4 flex items-center gap-1 {% if page <= 1 %} opacity-30 pointer-events-none {% endif %}"
+    >
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-left-icon lucide-chevron-left"
+        >
+            <path d="m15 18-6-6 6-6"/>
+        </svg>
+        <span>Previous</span>
+    </button>
+    <p>Page {{page}} of {{pages}}</p>
+    <button
+
+            hx-get="/?page={{page+1}}&sort={{request.query_params.sort}}"
+            hx-target=".docs_table_container"
+            hx-trigger="click"
+            hx-swap="outerHTML"
+            hx-push-url="true"
+            class="border hover:bg-zinc-200 cursor-pointer pr-6 pl-4 py-4 flex items-center gap-1 {% if page >= (total_docs / size) |round(0, 'ceil')|int %} opacity-30 pointer-events-none {% endif %}"
+    >
+        <span>Next</span>
+        <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="lucide lucide-chevron-right-icon lucide-chevron-right"
+        >
+            <path d="m9 18 6-6-6-6"/>
+        </svg>
+    </button>
+</div>

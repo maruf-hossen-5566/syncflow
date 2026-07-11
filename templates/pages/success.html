@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script
+            src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.10/dist/htmx.min.js"
+            integrity="sha384-H5SrcfygHmAuTDZphMHqBJLc3FhssKjG7w/CeCpFReSfwBWDTKpkzPP8c+cLsK+V"
+            crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>🎉 Success - Sync Flow</title>
+</head>
+<body class="h-screen px-24 flex flex-col items-center justify-center gap-6">
+<h1 class="text-3xl text-center">{{request.query_params.get("message")}}</h1>
+<a
+        href="/"
+        class="py-4 px-6 border"
+>Back to Home</a>
+</body>
+</html>

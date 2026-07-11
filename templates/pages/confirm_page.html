@@ -1,0 +1,28 @@
+{% extends "base_layout.html" %}
+<!---->
+{% block title %}Confirm{% endblock title %}
+<!---->
+
+{% block body %}
+<div class="h-screen px-24 flex flex-col items-center pt-50 gap-8">
+    <h3 class="text-xl border-b pb-4 text-center">{{user.email}}</h3>
+    <h1 class="text-3xl text-center">{{confirm_message}}</h1>
+    <div class="flex items-center gap-6">
+        <a
+                href="{{cancel_url or '/'}}"
+                class="py-4 px-6 border"
+        >Cancel</a
+        >
+        <form
+                action="{{confirm_url}}"
+                method="post"
+        >
+            <button
+                    class="py-4 px-6 border border-red-500 bg-red-500 text-white cursor-pointer"
+            >
+                Confirm
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock body %}

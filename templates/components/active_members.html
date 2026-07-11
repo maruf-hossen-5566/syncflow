@@ -1,0 +1,30 @@
+<div class="relative flex gap-2">
+    <div
+            id="who-is-writing"
+            class="py-3 px-5 flex items-center gap-1 hover:bg-zinc-100 cursor-default"
+            title="Who is currently writing"
+    >
+    </div>
+    <button
+            class="relative max-w-xs py-3 px-5 flex items-center gap-1 hover:bg-zinc-100 cursor-pointer border"
+            onclick="handleDropdownClick(event, 'doc-members-dropdown')"
+    >
+        <span class="relative flex size-2 mr-1">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex size-2 rounded-full bg-blue-500"></span>
+        </span>
+        <span
+                id="active-member-count"
+                class="text-nowrap overflow-hidden text-ellipsis"
+        >{{members|length}}</span>
+    </button>
+
+    <div
+            id="doc-members-dropdown"
+            class="hidden absolute z-100 top-full bg-white mt-2 right-0 max-h-50 min-h-max overflow-y-auto overflow-x-hidden py-4 px-6 space-y-2 flex flex-col border"
+    >
+        {% for m in members %}
+        <p>{{m}}</p>
+        {% endfor %}
+    </div>
+</div>

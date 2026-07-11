@@ -1,0 +1,14 @@
+{% extends "base_layout.html" %}
+<!---->
+{% block title %}Session expired{% endblock title %}
+<!---->
+
+{% block body %}
+<div class="w-screen h-screen flex flex-col items-center pt-32">
+    <h1 class="text-3xl text-center">Session expired, please login to continue!</h1>
+    <a
+            href="/auth/login"
+            class="py-4 px-6 border"
+    >Login</a>
+</div>
+{% endblock body %}

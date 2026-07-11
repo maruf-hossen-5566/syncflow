@@ -1,0 +1,124 @@
+{% extends "base_layout.html" %}
+
+{% block title %} {{doc.name or doc.id}} {% endblock title %}
+
+{% block body %}
+<!-- Load TinyMCE -->
+<script
+        src="{{ url_for('static', path='js/tinymce/tinymce.min.js') }}"
+        referrerpolicy="origin"
+        crossorigin="anonymous"
+></script>
+<link
+        rel="stylesheet"
+        href="{{ url_for('static', path='css/global.css') }}"
+>
+
+
+<div
+        class="w-full pb-30"
+        hx-ext="ws"
+
+>
+    <div
+            class="w-full mx-auto space-y-6"
+    >
+        {% include "components/doc_header.html" %}
+
+        <div class="max-w-screen-md w-full px-6 mt-40 sm:mt-30 xl:mt-22 mx-auto">
+            <label
+                    for="content"
+                    class="hidden"
+            >Content</label>
+            <textarea
+                    id="content"
+                    placeholder="Here..."
+                    class="w-full field-sizing-content resize-none min-h-screen max-h-content p-6 border focus:outline-4 outline-zinc-300"
+            >{{doc.content|safe or ''}}</textarea>
+        </div>
+    </div>
+</div>
+
+<!-- Initialize TinyMCE -->
+<script>
+    tinymce.init({
+        selector: '#content',
+        license_key: "gpl",
+        plugins: [
+            'advlist', 'anchor', 'autolink', 'autoresize', 'autosave', 'charmap', 'code',
+            'codesample', 'directionality', 'emoticons', 'fullscreen', 'help', 'image',
+            'importcss', 'insertdatetime', 'link', 'lists', 'media',
+            'nonbreaking', 'pagebreak', 'preview', 'save',
+            'table', 'visualblocks', 'visualchars', 'wordcount',
+        ],
+        toolbar: "undo redo | accordion accordionremove | blocks fontfamily | bold italic underline strikethrough | blockquote codesample | align numlist bullist | link image | table media | outdent indent| forecolor backcolor | pagebreak",
+        browser_spellcheck: true,
+        contextmenu: false,
+        menubar: false,
+        statusbar: false,
+        autosave_ask_before_unload: false,
+        toolbar_mode: 'open',
+        highlight_on_focus: false,
+        setup: function (editor) {
+            const socket = new WebSocket(`ws://${window.location.host}/documents/{{doc.id}}/content`);
+
+            let debounceTimer;
+            const sendContent = () => {
+                socket.send(JSON.stringify({content: editor?.getContent(), typing: "{{user.email}}"}))
+            }
+
+            editor.on('keyup', () => {
+                clearTimeout(debounceTimer)
+                debounceTimer = setTimeout(sendContent, 500)
+            });
+
+            editor.on("init", () => {
+                socket.onmessage = (event) => {
+                    const payload = JSON.parse(event.data);
+                    const refresh_page = payload["refresh_page"]
+                    const content = payload["content"]
+                    const typing = payload["typing"]
+                    const members = payload["members"]
+
+                    if (refresh_page) {
+                        window.location.reload()
+                    }
+
+                    try {
+                        const bookmark = editor.selection?.getBookmark(2, true);
+
+                        if (content !== undefined && content !== null) {
+                            editor.setContent(String(content));
+                            editor.selection?.moveToBookmark(bookmark);
+                        }
+
+                        if (typing) {
+                            const who_is_writing = document.querySelector("#who-is-writing")
+                            who_is_writing.innerHTML = `<span class="text-sm text-nowrap flex items-center gap-1"><strong class="max-w-70 inline-block w-full text-ellipsis overflow-hidden">${typing}</strong> <span>writing</span></span>`
+                            who_is_writing.title = `${typing} writing`
+                        }
+                        if (members) {
+                            document.querySelector("#active-member-count").innerText = members.length
+
+                            const container = document.querySelector('#doc-members-dropdown');
+                            container.innerHTML = '';
+                            members.forEach(m => {
+                                const p = document.createElement('p');
+                                p.textContent = m;
+                                container.appendChild(p);
+                            });
+                        }
+                    } catch (e) {
+                        console.log("WebSocket Error!")
+                    }
+                }
+            })
+        }
+    });
+</script>
+<script
+        src="{{ url_for('static', path='js/global.js') }}"
+        referrerpolicy="origin"
+        crossorigin="anonymous"
+></script>
+{% endblock body %}

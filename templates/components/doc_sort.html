@@ -1,0 +1,24 @@
+<div class="my-12 w-full flex gap-4 justify-between items-center">
+    <h1 class="text-3xl">Documents</h1>
+    <div>
+        <label
+                class="hidden"
+                for="doc_sort"
+        >Sort by</label>
+        {% if docs|length > 0 %}
+        <select
+                id="doc_sort"
+                name="sort"
+                class="border px-6 py-4"
+                hx-get="/"
+                hx-push-url="true"
+                hx-target=".docs_table_container"
+                hx-swap="outerHTML"
+        >
+            <option {% if request.query_params.sort == 'anyone' %} selected {% endif %} value="anyone">Owned by anyone</option>
+            <option {% if request.query_params.sort == 'by_me' %} selected {% endif %} value="by_me">Owned by me</option>
+            <option {% if request.query_params.sort == 'not_by_me' %} selected {% endif %} value="not_by_me">Not owned by me</option>
+        </select>
+        {% endif %}
+    </div>
+</div>

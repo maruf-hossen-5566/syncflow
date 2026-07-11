@@ -1,0 +1,29 @@
+{% extends "sidebar_layout.html" %}
+
+{% block sidebar %}
+{% with to="/",classes=" border" %}
+{% include "components/back_button.html" %}
+{% endwith %}
+{% endblock sidebar %}
+
+{% block main_content %}
+<div class="w-full flex flex-col gap-6">
+    {% include "components/account_info_card.html" %}
+
+    <div class="border p-6 space-y-6">
+        <h2 class="text-xl font-semibold text-red-500">Account Delete</h2>
+        <div class="w-full mx-auto flex flex-col gap-8">
+            <p>
+                Deleting your account will permanently remove your profile,
+                data, and settings. This action cannot be undone.
+            </p>
+            <a
+                    href="/me/account-delete"
+                    class="p-4 ml-auto bg-red-500 text-white cursor-pointer"
+            >
+                Delete account
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
