@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     ADMIN_PASSWORD: str = os.getenv("ADMIN_PASSWORD")
     # db
     DB_LOCAL_URL: str = os.getenv("DB_LOCAL_URL")
-    DATABASE_URL: str = os.getenv("DB_URL")
+    DATABASE_URL: str = os.getenv("DATABASE_URL")
 
 
 settings = Settings()
