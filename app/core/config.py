@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     ADMIN_USER: str = os.getenv("ADMIN_USER")
     ADMIN_PASSWORD: str = os.getenv("ADMIN_PASSWORD")
     # db
-    DB_LOCAL_URL: str = os.getenv("DB_LOCAL_URL")
+    DB_LOCAL_URL: str = os.getenv("DATABASE_LOCAL_URL")
     DATABASE_URL: str = os.getenv("DATABASE_URL")
 
 

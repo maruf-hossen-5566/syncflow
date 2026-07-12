@@ -4,15 +4,14 @@
 
 {% block body %}
 <!-- Load TinyMCE -->
+<!--<link rel="stylesheet" href="{{ url_for('static', path='css/global.css') }}">-->
+<!--<script src="{{ url_for('static', path='js/tinymce/tinymce.min.js') }}" referrerpolicy="origin" crossorigin="anonymous" ></script>-->
 <script
-        src="{{ url_for('static', path='js/tinymce/tinymce.min.js') }}"
+        src="/static/js/tinymce/tinymce.min.js"
         referrerpolicy="origin"
         crossorigin="anonymous"
 ></script>
-<link
-        rel="stylesheet"
-        href="{{ url_for('static', path='css/global.css') }}"
->
+<link href="/static/css/global.css" rel="stylesheet">
 
 
 <div
@@ -116,8 +115,9 @@
         }
     });
 </script>
+<!--<script src="{{ url_for('static', path='js/global.js') }}" referrerpolicy="origin" crossorigin="anonymous" ></script>-->
 <script
-        src="{{ url_for('static', path='js/global.js') }}"
+        src="/static/js/global.js"
         referrerpolicy="origin"
         crossorigin="anonymous"
 ></script>
