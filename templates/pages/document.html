@@ -59,7 +59,8 @@
         toolbar_mode: 'open',
         highlight_on_focus: false,
         setup: function (editor) {
-            const socket = new WebSocket(`ws://${window.location.host}/documents/{{doc.id}}/content`);
+            const dev_or_dep = window.location.protocol === 'https:' ? 'wss' : 'ws';
+            const socket = new WebSocket(`${dev_or_dep}://${window.location.host}/documents/{{doc.id}}/content`);
 
             let debounceTimer;
             const sendContent = () => {
